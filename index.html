@@ -1,57 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Be My Valentine 💖</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, #ffdee9, #b5fffc);
-      overflow: hidden;
-    }
-    .card {
-      background: rgba(255,255,255,0.9);
-      padding: 30px;
-      border-radius: 20px;
-      text-align: center;
-      width: 85%;
-      max-width: 400px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      animation: fadeIn 1s ease;
-    }
-    h1 {
-      color: #ff4d6d;
-    }
-    button {
-      padding: 12px 25px;
-      border: none;
-      border-radius: 25px;
-      font-size: 16px;
-      margin: 10px;
-      cursor: pointer;
-    }
-    .yes {
-      background: #ff4d6d;
-      color: white;
-    }
-    .no {
-      background: #ccc;
-    }
-    img {
-      width: 200px;
-      margin-top: 15px;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0; transform: scale(0.9);}
-      to {opacity: 1; transform: scale(1);}
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Be My Valentine 💖</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #ffd1dc, #e0f7fa);
+    overflow: hidden;
+  }
+
+  .card {
+    background: rgba(255,255,255,0.95);
+    padding: 30px;
+    border-radius: 22px;
+    text-align: center;
+    width: 85%;
+    max-width: 380px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    animation: fade 0.8s ease;
+  }
+
+  h1 {
+    color: #ff4d6d;
+  }
+
+  button {
+    padding: 12px 26px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    margin: 10px;
+    cursor: pointer;
+  }
+
+  .yes {
+    background: #ff4d6d;
+    color: white;
+  }
+
+  .no {
+    background: #ddd;
+  }
+
+  img {
+    width: 220px;
+    margin-top: 15px;
+    border-radius: 16px;
+  }
+
+  .heart {
+    position: absolute;
+    color: #ff4d6d;
+    animation: float 4s linear infinite;
+    font-size: 18px;
+  }
+
+  @keyframes fade {
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+  }
+
+  @keyframes float {
+    from {transform: translateY(0); opacity: 1;}
+    to {transform: translateY(-100vh); opacity: 0;}
+  }
+</style>
 </head>
+
 <body>
 
 <div class="card" id="box">
@@ -61,22 +83,47 @@
 </div>
 
 <script>
-function noClick() {
-  document.getElementById("box").innerHTML = `
-    <h1>😏</h1>
-    <p>Ashtee bedhoo yaroo sikartalee 😏</p>
-    <p>Stfu 🙄</p>
-    <p>Promises don't last 🫡</p>
-    <p>ik u always luv ur i20 onlyy 😭</p>
-  `;
-}
+  const noTexts = [
+    "Ashtee bedhoo yaroo sikartalee 😏",
+    "Stfu 🙄",
+    "Promises don't last 🫡",
+    "ik u always luv ur i20 onlyy 😭"
+  ];
 
-function yesClick() {
-  document.getElementById("box").innerHTML = `
-    <h1>Yayyyy ur minee boboo ❤️‍🩹🫣🪬</h1>
-    <img src="https://media.tenor.com/2roX3uxz_68AAAAC/cat-kiss.gif" alt="cute cat kiss">
-  `;
-}
+  let noIndex = 0;
+
+  function noClick() {
+    if (noIndex < noTexts.length) {
+      document.getElementById("box").innerHTML = `
+        <h1>${noTexts[noIndex]}</h1>
+        <p>(tap NO again 😌)</p>
+      `;
+      noIndex++;
+    } else {
+      noIndex = 0;
+    }
+  }
+
+  function yesClick() {
+    document.getElementById("box").innerHTML = `
+      <h1>Yayyyy ur minee boboo ❤️‍🩹🫣🪬</h1>
+      <img src="https://media.tenor.com/YpY9YxP1F9cAAAAC/cute-cat-kiss.gif">
+    `;
+    hearts();
+  }
+
+  function hearts() {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerHTML = "💗";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.bottom = "0px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 4000);
+    }, 300);
+  }
 </script>
 
 </body>
