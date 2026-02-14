@@ -1,136 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Valentine 💖</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Valentine 💖</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ffd1dc, #ffe6f0);
+      font-family: 'Segoe UI', sans-serif;
+    }
 
-<style>
-  * {
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 18px;
+      text-align: center;
+      width: 320px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
 
-  body {
-    margin: 0;
-    height: 100vh;
-    background: linear-gradient(135deg, #ffd6e8, #e6f7ff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
+    h1 {
+      color: #ff4d6d;
+      margin-bottom: 20px;
+    }
 
-  .card {
-    background: rgba(255,255,255,0.95);
-    width: 90%;
-    max-width: 380px;
-    padding: 28px;
-    border-radius: 22px;
-    text-align: center;
-    box-shadow: 0 18px 40px rgba(0,0,0,0.18);
-    animation: pop 0.8s ease;
-  }
+    button {
+      padding: 10px 22px;
+      margin: 10px;
+      border: none;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-  h1 {
-    font-size: 22px;
-    color: #ff4d6d;
-    margin-bottom: 15px;
-  }
+    .yes {
+      background-color: #ff4d6d;
+      color: white;
+    }
 
-  button {
-    padding: 12px 26px;
-    border: none;
-    border-radius: 30px;
-    font-size: 16px;
-    margin: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
+    .no {
+      background-color: #e0e0e0;
+    }
 
-  .yes {
-    background: #ff4d6d;
-    color: white;
-  }
+    button:hover {
+      transform: scale(1.08);
+    }
 
-  .no {
-    background: #e0e0e0;
-  }
+    .msgs p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
 
-  button:hover {
-    transform: scale(1.06);
-  }
-
-  .messages {
-    text-align: left;
-    margin-top: 15px;
-  }
-
-  .bubble {
-    background: #ffe6ee;
-    padding: 10px 14px;
-    border-radius: 14px;
-    margin-bottom: 8px;
-    font-size: 15px;
-    animation: fade 0.4s ease;
-  }
-
-  img {
-    width: 220px;
-    margin-top: 18px;
-    border-radius: 18px;
-  }
-
-  @keyframes pop {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
-  }
-
-  @keyframes fade {
-    from { opacity: 0; transform: translateY(6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>
+    img {
+      width: 220px;
+      margin-top: 15px;
+      border-radius: 15px;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="card" id="box">
-  <h1>Will you be my Valentine? 🫣💗</h1>
+<div class="box" id="box">
+  <h1>Will you be my Valentine? 💌</h1>
 
-  <button class="yes" onclick="yesClick()">Yes 💕</button>
+  <button class="yes" onclick="yesClick()">Yes 💖</button>
   <button class="no" onclick="noClick()">No 🙄</button>
 
-  <div class="messages" id="msgs"></div>
+  <div class="msgs" id="msgs"></div>
 </div>
 
 <script>
-  const noTexts = [
+  const noLines = [
     "Ashtee bedhoo yaroo sikartalee 😏",
     "Stfu 🙄",
     "Promises don't last 🫡",
     "ik u always luv ur i20 onlyy 😭"
   ];
-
-  let index = 0;
+  let i = 0;
 
   function noClick() {
-    if (index < noTexts.length) {
-      const msgBox = document.getElementById("msgs");
-      const div = document.createElement("div");
-      div.className = "bubble";
-      div.innerText = noTexts[index];
-      msgBox.prepend(div);
-      index++;
+    if (i < noLines.length) {
+      const p = document.createElement("p");
+      p.innerText = noLines[i];
+      document.getElementById("msgs").appendChild(p);
+      i++;
     }
   }
 
   function yesClick() {
     document.getElementById("box").innerHTML = `
-      <h1>yayy!ur always minee boboo❤️‍🩹🥹🪬</h1>
+      <h1>Ur always my boboo 💖</h1>
       <p>(Unfortunately u lost ur freedom 😂🫣)</p>
 
-      https://media.giphy.com/media/26FLdmIp6wJr91JAI/giphy.gif
+      <!-- LOVE-RELATED CUTE GIF -->
+      <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="love gif">
     `;
   }
 </script>
